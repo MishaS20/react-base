@@ -1,0 +1,13 @@
+button {
+   color: azure;
+   padding: 10px;
+   margin: 10px 0 0 0;
+   border-radius: 7px;
+   background-color: rgb(66, 189, 189);
+}
+.delbutton {
+   margin-left: 10px;
+}
+.list {
+   margin-top: 10px;
+}
