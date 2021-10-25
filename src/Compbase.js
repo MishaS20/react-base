@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './compbase.css';
-import Renderelem from './Renderelem';
+import Elem from './Elem';
 
 export default class Compbase extends React.Component {
    constructor() {
@@ -8,9 +8,9 @@ export default class Compbase extends React.Component {
       this.state = { list: [], counter: 0, counterDel: 0 }
    }
 
-   buttonCounter() {
-      this.setState(prevState => {
-         return { counter: prevState.counter + 1 }
+   changeButtonCounter() {
+      this.setState(previousState => {
+         return { counter: previousState.counter + 1 }
       });
    }
 
@@ -23,14 +23,17 @@ export default class Compbase extends React.Component {
    deleteLastElement() {
       let stlist = this.state.list;
       let lastElement = stlist.length - 1
-      this.setState(prevState => ({
-         list: prevState.list.filter((el, index) => index != lastElement)
+      this.setState(previousState => ({
+         list: previousState.list.filter((el, index) => index !== lastElement)
       }));
    }
 
    renderList() {
       return this.state.list.map((item, index) => {
-         return <Renderelem elem={item.title} idx={index} />
+         return (
+            <li key={`${item.title}${index}`}>
+               <Elem elem={item.title} idx={index} />
+            </li>)
       })
    }
 
@@ -41,15 +44,15 @@ export default class Compbase extends React.Component {
             <div>Кол-во элементов в списке: {this.state.list.length}</div>
             <div>Кол-во кликов на кнопку "Добавить" и "Удаление": {this.state.counter}</div>
             <button onClick={() => {
-               this.buttonCounter()
+               this.changeButtonCounter()
                this.addElement()
             }}> Добавить </button>
             <button className="delbutton" onClick={() => {
-               this.buttonCounter()
+               this.changeButtonCounter()
                this.deleteLastElement()
             }}>Удалить</button>
 
-            <div className="list">{this.renderList()} </div>
+            <ul className="list">{this.renderList()} </ul>
          </div >
 
       );

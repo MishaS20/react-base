@@ -15,3 +15,6 @@ button:hover {
 .list {
    margin-top: 10px;
 }
+li {
+   list-style-type: none;
+}
